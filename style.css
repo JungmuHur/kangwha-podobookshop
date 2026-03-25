@@ -505,7 +505,7 @@ ul {
    =================================== */
 .press-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
 
@@ -513,9 +513,11 @@ ul {
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 32px;
+  padding: 28px;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
 }
 
 .press-card:hover {
@@ -523,32 +525,59 @@ ul {
   box-shadow: var(--shadow-lg);
 }
 
+.press-card--link {
+  text-decoration: none;
+  cursor: pointer;
+  border-color: var(--grape-pale);
+}
+
+.press-card--link:hover {
+  border-color: var(--grape-light);
+}
+
+.press-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
 .press-card__source {
   display: inline-block;
   background: var(--grape-pale);
   color: var(--grape);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 700;
   padding: 4px 14px;
   border-radius: 50px;
-  margin-bottom: 16px;
+}
+
+.press-card__date {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.press-card__title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
 .press-card__quote {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
   line-height: 1.8;
-  font-style: italic;
+  flex: 1;
 }
 
-.press-card__quote::before {
-  content: '"';
-  font-size: 3rem;
-  color: var(--grape-pale);
-  line-height: 0;
-  vertical-align: -1rem;
-  margin-right: 4px;
-  font-style: normal;
+.press-card__link-hint {
+  display: block;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--grape);
 }
 
 /* ===================================
@@ -923,7 +952,7 @@ ul {
   }
 
   .press-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .pricing-grid {
@@ -949,6 +978,12 @@ ul {
   .step {
     max-width: 100%;
     width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .press-grid {
+    grid-template-columns: 1fr;
   }
 }
 
