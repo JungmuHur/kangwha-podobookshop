@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>강화 포도책방 — 모두가 주인인 공유서점</title>
+  <meta name="description" content="강화도의 공유서점 포도책방. 내 책장 하나로 책방 주인이 되세요. 함께 읽고, 쓰고, 나누는 공간." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="header__logo">🍇 포도책방 강화점</a>
+      <nav class="header__nav" id="headerNav">
+        <a href="#how">운영방식</a>
+        <a href="#pricing">입점비용</a>
+        <a href="#press">언론보도</a>
+        <a href="#faq">Q&amp;A</a>
+      </nav>
+      <div class="header__actions">
+        <a href="#pricing" class="btn btn--outline">점주 신청</a>
+      </div>
+      <button class="header__toggle" id="menuToggle" aria-label="메뉴 열기">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 히어로 -->
+  <section class="hero">
+    <div class="container hero__inner">
+      <div class="hero__badge">강화도 유일의 공유서점</div>
+      <h1 class="hero__title">모두가 주인인<br />공유서점</h1>
+      <p class="hero__desc">
+        내 책장 하나로 책방 주인이 되세요.<br />
+        함께 읽고, 쓰고, 나누는 공유서점 포도책방 강화점입니다.
+      </p>
+      <div class="hero__actions">
+        <a href="#pricing" class="btn btn--primary btn--lg">점주 신청하기 →</a>
+        <a href="#how" class="btn btn--ghost btn--lg">운영방식 보기</a>
+      </div>
+      <div class="hero__stats">
+        <div class="stat">
+          <span class="stat__num" data-target="150">0</span>
+          <span class="stat__label">명의 점주</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="4000">0</span>
+          <span class="stat__label">권의 도서</span>
+        </div>
+        <div class="stat__divider"></div>
+        <div class="stat">
+          <span class="stat__num" data-target="20">0</span>
+          <span class="stat__unit">%</span>
+          <span class="stat__label">지역사회 환원</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero__bg-deco" aria-hidden="true">🍇</div>
+  </section>
+
+  <!-- 운영 방식 -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">How it works</p>
+        <h2 class="section__title">어떻게 운영되나요?</h2>
+        <p class="section__sub">누구나 쉽게 내 책방을 시작할 수 있어요</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step__num">1</div>
+          <div class="step__icon">📚</div>
+          <h3 class="step__title">책장을 임대해요</h3>
+          <p class="step__desc">월 3천원~3만원으로 나만의 책장을 가질 수 있어요. 헌책, 새책, 굿즈 무엇이든 판매 가능!</p>
+        </div>
+        <div class="step__arrow" aria-hidden="true">→</div>
+        <div class="step">
+          <div class="step__num">2</div>
+          <div class="step__icon">💰</div>
+          <h3 class="step__title">수익을 나눠요</h3>
+          <p class="step__desc">판매 수익의 50~100%가 점주님께 돌아가요. 정산은 매월 자동으로!</p>
+        </div>
+        <div class="step__arrow" aria-hidden="true">→</div>
+        <div class="step">
+          <div class="step__num">3</div>
+          <div class="step__icon">🤝</div>
+          <h3 class="step__title">함께 성장해요</h3>
+          <p class="step__desc">수익의 20%는 지역사회에 환원. 북콘서트, 독서모임, 전시 등 다양한 문화 활동을 함께해요.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 강화점 소개 -->
+  <section class="section section--grape" id="branch">
+    <div class="container">
+      <div class="section__header section__header--light">
+        <p class="section__eyebrow">강화점</p>
+        <h2 class="section__title">포도책방 강화점</h2>
+      </div>
+      <div class="branch">
+        <div class="branch__info">
+          <div class="branch__badge">운영중</div>
+          <ul class="branch__meta">
+            <li>
+              <span class="branch__icon">📍</span>
+              <span>인천 강화군 강화읍 강화대로 378-16</span>
+            </li>
+            <li>
+              <span class="branch__icon">👥</span>
+              <span>150명의 점주 · 📚 4,000권</span>
+            </li>
+            <li>
+              <span class="branch__icon">🕐</span>
+              <span>13:00~19:00 (수요일 휴무)</span>
+            </li>
+            <li>
+              <span class="branch__icon">🏛️</span>
+              <span>일제강점기에 지어진 미곡 창고를 고쳐 서점으로 꾸몄어요</span>
+            </li>
+          </ul>
+          <a href="#pricing" class="btn btn--primary">점주 신청하기 →</a>
+        </div>
+        <div class="branch__quote">
+          <blockquote>
+            <p>"각자의 개성이 듬뿍 담긴 서가가 포도송이처럼 어우러지는 풍성한 책방."</p>
+            <footer>— 동네서점지도</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 언론 보도 -->
+  <section class="section" id="press">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Press</p>
+        <h2 class="section__title">언론에서 주목한 포도책방</h2>
+        <p class="section__sub">공유서점의 새로운 모델로 인정받고 있어요</p>
+      </div>
+      <div class="press-grid">
+        <div class="press-card">
+          <div class="press-card__source">오마이뉴스</div>
+          <p class="press-card__quote">"지방이 무너지는 것은 다양성이 무너지는 것. 책만큼 다양성이 풍부한 게 없다고 생각했고요. 포도책방과 같은 형태는 시민운동 차원에서 너무 바람직한 모델이라고 생각합니다."</p>
+        </div>
+        <div class="press-card">
+          <div class="press-card__source">강화뉴스</div>
+          <p class="press-card__quote">"책방은 단순히 책을 사고파는 공간을 넘어, 책을 매개로 함께 읽고 쓰고 나누는 공동체적 공간을 지향한다. 수익의 20% 이상을 사회에 환원한다는 점도 눈길을 끈다."</p>
+        </div>
+        <div class="press-card">
+          <div class="press-card__source">동네서점지도</div>
+          <p class="press-card__quote">"모두가 주인인 서점을 구호로 문을 열었다. 일제강점기에 지어진 미곡 창고를 고쳐 서점으로 꾸몄다. 각자의 개성이 듬뿍 담긴 서가가 포도송이처럼 어우러지는 풍성한 책방."</p>
+        </div>
+        <div class="press-card">
+          <div class="press-card__source">강화시니어신문</div>
+          <p class="press-card__quote">"공유서점 포도책방은 지역주민이 함께 만들어가는 새로운 문화 공간으로, 책을 통한 세대 간 소통과 지역 커뮤니티 활성화에 기여하고 있다."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 입점 비용 -->
+  <section class="section section--light" id="pricing">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">Pricing</p>
+        <h2 class="section__title">입점 비용</h2>
+        <p class="section__sub">부담 없는 비용으로 나만의 책방을 시작하세요</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-card__size">소형</div>
+          <h3 class="pricing-card__name">미니 책장</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">3,000</span>
+            <span class="pricing-card__unit">원/월</span>
+          </div>
+          <ul class="pricing-card__features">
+            <li>책 10~15권 진열</li>
+            <li>굿즈/소품 판매 가능</li>
+            <li>판매 수익 50~100%</li>
+            <li>월 정산</li>
+          </ul>
+          <a href="mailto:podobookshop@gmail.com?subject=강화점 미니책장 입점 신청" class="btn btn--outline btn--full">신청하기</a>
+        </div>
+        <div class="pricing-card pricing-card--popular">
+          <div class="pricing-card__badge">인기</div>
+          <div class="pricing-card__size">중형</div>
+          <h3 class="pricing-card__name">작은 책장</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">10,000</span>
+            <span class="pricing-card__unit">원/월</span>
+          </div>
+          <ul class="pricing-card__features">
+            <li>책 30~40권 진열</li>
+            <li>굿즈/소품 판매 가능</li>
+            <li>판매 수익 50~100%</li>
+            <li>월 정산</li>
+          </ul>
+          <a href="mailto:podobookshop@gmail.com?subject=강화점 작은책장 입점 신청" class="btn btn--primary btn--full">신청하기</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card__size">대형</div>
+          <h3 class="pricing-card__name">큰 책장</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">20,000</span>
+            <span class="pricing-card__unit">원/월</span>
+          </div>
+          <ul class="pricing-card__features">
+            <li>책 60~80권 진열</li>
+            <li>굿즈/소품 판매 가능</li>
+            <li>판매 수익 50~100%</li>
+            <li>월 정산</li>
+          </ul>
+          <a href="mailto:podobookshop@gmail.com?subject=강화점 큰책장 입점 신청" class="btn btn--outline btn--full">신청하기</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-card__size">프리미엄</div>
+          <h3 class="pricing-card__name">평대</h3>
+          <div class="pricing-card__price">
+            <span class="pricing-card__amount">30,000</span>
+            <span class="pricing-card__unit">원/월</span>
+          </div>
+          <ul class="pricing-card__features">
+            <li>넓은 전시 공간</li>
+            <li>굿즈/소품 판매 가능</li>
+            <li>판매 수익 50~100%</li>
+            <li>월 정산</li>
+          </ul>
+          <a href="mailto:podobookshop@gmail.com?subject=강화점 평대 입점 신청" class="btn btn--outline btn--full">신청하기</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section__header">
+        <p class="section__eyebrow">FAQ</p>
+        <h2 class="section__title">자주 묻는 질문</h2>
+        <p class="section__sub">궁금한 점을 확인해보세요. 더 궁금한 점은 언제든 연락주세요!</p>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            어떻게 입점하나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>이 페이지에서 원하시는 플랜의 신청하기 버튼을 누르시거나, 직접 방문하셔서 상담받으실 수 있습니다. 원하시는 책장 크기와 위치를 선택하시면, 바로 입점 가능합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            책이 없어도 입점할 수 있나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>네, 가능합니다! 책뿐만 아니라 직접 만든 굿즈, 소품, 그림 등도 판매할 수 있습니다. 자신만의 개성 있는 공간으로 꾸며보세요.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            수익은 어떻게 분배되나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>헌책은 50:50, 새책은 85~100% 점주님께 돌아갑니다. 포도책방을 통해 주문한 새책은 100% 점주 수익입니다. 정산은 매월 진행됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            책장 관리는 어떻게 하나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>판매, 재고관리, 정산 등 모든 운영은 책방에서 대행해드립니다. 점주님은 한 달에 한 번 정도 책장 정리만 해주시면 됩니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            계약 기간이 있나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>최소 1개월부터 가능합니다. 언제든 해지 가능하며, 해지 시 남은 기간 이용료는 환불해드립니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            여러 개의 책장을 빌릴 수 있나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>네! 원하시는 만큼 여러 책장을 임대하실 수 있습니다. 여러 지점에 동시에 입점하는 것도 가능합니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            책 가격은 누가 정하나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>점주님이 직접 정합니다. 헌책의 경우 보통 정가의 50% 내외로 책정하시는 분이 많지만, 자유롭게 정하실 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            책이 안 팔리면 어떻게 되나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>책장 임대료 외에 추가 비용은 없습니다. 책이 안 팔려도 부담 없이 계속 진열해두실 수 있어요.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__question" aria-expanded="false">
+            수익의 20% 환원은 어디에 쓰이나요?
+            <span class="faq-item__icon">+</span>
+          </button>
+          <div class="faq-item__answer">
+            <p>지역 도서관 기증, 소외계층 독서 지원, 지역 문화 행사 후원 등에 사용됩니다. 포도책방은 수익을 지역사회와 나누는 사회적 책방을 지향합니다.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 대표 인용구 -->
+  <section class="section section--grape section--quote">
+    <div class="container">
+      <blockquote class="big-quote">
+        <p>"세상 모든 직업에는 공간이 필요하듯,<br />세상의 모든 주제는 책 속에 있지요.<br />책이 고차원적인 놀이수단이 되었으면 좋겠습니다."</p>
+        <footer>— 포도책방 대표</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- 푸터 -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">🍇 포도책방 강화점</div>
+        <p class="footer__tagline">모두가 주인인 공유서점.<br />함께 읽고, 쓰고, 나누는 공간.<br />수익의 20%를 지역사회에 환원합니다.</p>
+      </div>
+      <div class="footer__links">
+        <div class="footer__col">
+          <h4>강화점</h4>
+          <ul>
+            <li>📍 강화군 강화읍 강화대로 378-16</li>
+            <li>🕐 13:00~19:00 (수요일 휴무)</li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>문의</h4>
+          <ul>
+            <li><a href="mailto:podobookshop@gmail.com">점주 신청</a></li>
+            <li><a href="mailto:podobookshop@gmail.com">입점 문의</a></li>
+            <li><a href="mailto:podobookshop@gmail.com">제휴 문의</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>연락처</h4>
+          <ul>
+            <li><a href="tel:01057988842">📞 010-5798-8842</a></li>
+            <li><a href="mailto:podobookshop@gmail.com">📧 podobookshop@gmail.com</a></li>
+            <li><a href="https://instagram.com/podobookshop" target="_blank" rel="noopener">📷 @podobookshop</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2026 포도책방 강화점. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
