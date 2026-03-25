@@ -1109,6 +1109,13 @@ ul {
   margin-bottom: 16px;
 }
 
+.footer__logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  filter: brightness(0) invert(1);
+}
+
 .footer__tagline {
   font-size: 0.875rem;
   line-height: 1.8;
