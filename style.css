@@ -236,9 +236,9 @@ ul {
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(74, 31, 97, 0.88) 0%,
-    rgba(107, 45, 139, 0.75) 50%,
-    rgba(74, 31, 97, 0.70) 100%);
+    rgba(107, 45, 139, 0.45) 0%,
+    rgba(155, 77, 202, 0.30) 50%,
+    rgba(107, 45, 139, 0.40) 100%);
 }
 
 .hero__inner {
@@ -1101,6 +1101,26 @@ ul {
 .footer {
   background: var(--text);
   color: rgba(255, 255, 255, 0.8);
+}
+
+.footer--deep {
+  background: #2a0d42;
+}
+
+.footer__logo-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 24px;
+  margin-bottom: 20px;
+}
+
+.footer__logo-box-img {
+  height: 52px;
+  width: auto;
+  display: block;
 }
 
 .footer__inner {
