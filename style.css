@@ -37,7 +37,7 @@ html {
 body {
   font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
   color: var(--text);
-  background: #f7f2fc;
+  background: var(--white);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
