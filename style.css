@@ -892,6 +892,69 @@ ul {
   box-shadow: 0 0 0 3px var(--grape-pale), var(--shadow-lg);
 }
 
+/* ── 입점 문의 안내 박스 ── */
+.pricing-contact {
+  margin-top: 56px;
+  background: linear-gradient(135deg, #2a0d42 0%, #4a1942 100%);
+  border-radius: 24px;
+  padding: 48px 40px;
+  text-align: center;
+  color: #ffffff;
+}
+.pricing-contact__icon {
+  font-size: 2.4rem;
+  margin-bottom: 12px;
+}
+.pricing-contact__title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+.pricing-contact__sub {
+  font-size: .95rem;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 28px;
+}
+.pricing-contact__links {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+.pricing-contact__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: .95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .18s, box-shadow .18s;
+}
+.pricing-contact__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,.3);
+}
+.pricing-contact__btn--call {
+  background: #ffffff;
+  color: #2a0d42;
+}
+.pricing-contact__btn--mail {
+  background: rgba(255,255,255,.15);
+  color: #ffffff;
+  border: 2px solid rgba(255,255,255,.4);
+}
+.pricing-contact__btn--mail:hover {
+  background: rgba(255,255,255,.25);
+}
+.pricing-contact__note {
+  font-size: .8rem;
+  color: rgba(255,255,255,.5);
+}
+
 .pricing-card__badge {
   position: absolute;
   top: -14px;
