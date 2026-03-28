@@ -273,6 +273,7 @@
         const items = (data.items||[]).filter(m=>m.id!==id);
         await AC.saveJSON(PATH,{items},`물품 삭제`);
         AC.setStatus('pgStatus','success','삭제 완료!');
+        AC.downloadBackup({items}, '오이장터');
         allItems = items;
         const filtered = curFilter==='all' ? items : items.filter(i=>i.category===curFilter);
         renderFeed(filtered); renderAdminList(items);
@@ -307,11 +308,13 @@
         const data = await AC.fetchJSON(PATH);
         const items = [...(data.items||[]), item];
         await AC.saveJSON(PATH,{items},`물품 추가: ${item.title}`);
-        AC.setStatus('pgStatus','success','✅ 등록 완료! 1~2분 후 반영됩니다.');
+        AC.setStatus('pgStatus','success','✅ 등록 완료! 백업 저장 중…');
+        AC.downloadBackup({items}, '오이장터');
         document.getElementById('writeForm').reset();
         document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
         if (uploader) uploader.reset();
         allItems = items;
+        setTimeout(() => AC.setStatus('pgStatus','success','✅ 등록 완료! 1~2분 후 반영됩니다.'), 800);
         const filtered = curFilter==='all' ? items : items.filter(i=>i.category===curFilter);
         renderFeed(filtered); renderAdminList(items);
       } catch(e){ handleErr(e,'pgStatus'); }

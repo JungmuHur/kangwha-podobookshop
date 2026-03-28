@@ -225,6 +225,7 @@
         const items = (data.stories||[]).filter(s=>s.id!==id);
         await AC.saveJSON(PATH,{stories:items},`이야기 삭제`);
         AC.setStatus('pgStatus','success','삭제 완료!');
+        AC.downloadBackup({stories:items}, '책방이야기');
         renderFeed(items); renderAdminList(items);
       } catch(e){ handleErr(e,'pgStatus'); }
     };
@@ -255,11 +256,13 @@
         const data = await AC.fetchJSON(PATH);
         const items = [...(data.stories||[]), item];
         await AC.saveJSON(PATH,{stories:items},`이야기 추가: ${item.title}`);
-        AC.setStatus('pgStatus','success','✅ 등록 완료! 1~2분 후 반영됩니다.');
+        AC.setStatus('pgStatus','success','✅ 등록 완료! 백업 저장 중…');
+        AC.downloadBackup({stories:items}, '책방이야기');
         document.getElementById('writeForm').reset();
         document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
         if (uploader) uploader.reset();
         renderFeed(items); renderAdminList(items);
+        setTimeout(() => AC.setStatus('pgStatus','success','✅ 등록 완료! 1~2분 후 반영됩니다.'), 800);
       } catch(e){ handleErr(e,'pgStatus'); }
       finally{ btn.disabled = false; }
     });

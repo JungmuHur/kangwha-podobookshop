@@ -494,7 +494,7 @@
     /* ── 상태 ── */
     let isAdmin = false;
     let selectedEmoji = '📖';
-    let ghToken = sessionStorage.getItem('_jt') || '';
+    let ghToken = localStorage.getItem('_jt') || '';
     let imgUploader = null;
 
     /* ── 날짜 기본값 ── */
@@ -624,7 +624,8 @@
         const entries = await fetchEntries();
         const newEntries = entries.filter(e => e.id !== id);
         await saveEntries(newEntries);
-        setStatus('success', '삭제되었어요! (반영까지 1~2분)');
+        setStatus('success', '삭제되었어요!');
+        AC.downloadBackup({ entries: newEntries }, '책방일지');
         renderFeed(newEntries);
         renderAdminList(newEntries);
       } catch(err) {
@@ -665,13 +666,15 @@
         const entries = await fetchEntries();
         entries.push(newEntry);
         await saveEntries(entries);
-        setStatus('success', '✅ 일지가 올라갔어요! 1~2분 후 반영됩니다.');
+        setStatus('success', '✅ 일지 등록 완료! 백업 저장 중…');
+        AC.downloadBackup({ entries }, '책방일지');
         document.getElementById('entryTitle').value = '';
         document.getElementById('entryContent').value = '';
         document.getElementById('entryDate').value = new Date().toISOString().slice(0,10);
         if (imgUploader) imgUploader.reset();
         renderFeed(entries);
         renderAdminList(entries);
+        setTimeout(() => setStatus('success', '✅ 일지가 올라갔어요! 1~2분 후 반영됩니다.'), 800);
       } catch(err) {
         if (!ghToken || String(err.message).includes('토큰') || String(err.message).includes('401') || String(err.message).includes('Bad credentials') || err.message === 'NO_TOKEN') {
           setStatus('error', 'GitHub 토큰을 입력해주세요');
@@ -703,7 +706,7 @@
       );
       if (token) {
         ghToken = token.trim();
-        sessionStorage.setItem('_jt', ghToken);
+        localStorage.setItem('_jt', ghToken);
       }
     }
 

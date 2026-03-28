@@ -49,8 +49,8 @@ window.AC = (function () {
   function esc(s) {
     return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
-  function getToken() { return sessionStorage.getItem('_jt') || ''; }
-  function setToken(t) { if (t) sessionStorage.setItem('_jt', t.trim()); }
+  function getToken() { return localStorage.getItem('_jt') || ''; }
+  function setToken(t) { if (t) localStorage.setItem('_jt', t.trim()); }
   function checkPw(pw) { return pw === ADMIN_PW; }
 
   /* ── GitHub API ── */
@@ -267,5 +267,26 @@ window.AC = (function () {
     return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'short' });
   }
 
-  return { esc, getToken, setToken, checkPw, fetchJSON, saveJSON, promptToken, injectModals, setStatus, fmtDate, createUploader, uploadImgs, imgHtml };
+  /* ── 백업 다운로드 ── */
+  function downloadBackup(data, prefix) {
+    try {
+      const now = new Date();
+      const pad = n => String(n).padStart(2, '0');
+      const ts = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}_${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+      const filename = `강화포도책방_${prefix}_${ts}.json`;
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    } catch(e) {
+      console.warn('백업 다운로드 실패:', e);
+    }
+  }
+
+  return { esc, getToken, setToken, checkPw, fetchJSON, saveJSON, promptToken, injectModals, setStatus, fmtDate, createUploader, uploadImgs, imgHtml, downloadBackup };
 })();
