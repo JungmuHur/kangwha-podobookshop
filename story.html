@@ -3,17 +3,79 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>나의 책방이야기 — 강화포도책방</title>
   <meta name="color-scheme" content="light only" />
-  <meta name="description" content="강화포도책방 점주님들이 직접 쓰는 나만의 책방 이야기." />
+  <title>나의 책방이야기 — 강화포도책방</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <style>
+    .pg-hero{background:linear-gradient(135deg,#4a1942 0%,#7c3aed 60%,#c084fc 100%);color:#fff;padding:140px 0 80px;text-align:center}
+    .pg-hero__eye{font-size:.8rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:16px}
+    .pg-hero__title{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:900;margin-bottom:12px}
+    .pg-hero__sub{font-size:1rem;color:rgba(255,255,255,.75)}
+    .pg-section{padding:80px 0 120px;background:#fff}
+    .pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;max-width:960px;margin:0 auto}
+    .pg-empty{text-align:center;padding:80px 20px;color:#6b7280;max-width:960px;margin:0 auto}
+    .pg-empty__icon{font-size:3rem;margin-bottom:16px}
+    .story-card{background:#fff;border:1px solid #ede9fe;border-radius:20px;padding:28px;box-shadow:0 4px 20px rgba(109,40,217,.06);position:relative;overflow:hidden}
+    .story-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#7c3aed,#c084fc)}
+    .story-card__badge{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;padding:4px 12px;border-radius:50px;background:#ede9fe;color:#5b21b6;margin-bottom:14px}
+    .story-card__header{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+    .story-card__emoji{font-size:1.8rem;line-height:1}
+    .story-card__title{font-size:1.05rem;font-weight:900;color:#1a1a2e;margin-bottom:4px}
+    .story-card__meta{font-size:.8rem;color:#7c3aed;font-weight:600}
+    .story-card__body{font-size:.9rem;color:#4b5563;line-height:1.9;white-space:pre-wrap}
+    .story-card__body.collapsed{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+    .story-card__toggle{font-size:.78rem;font-weight:700;color:#7c3aed;background:none;border:none;cursor:pointer;padding:4px 0 0;font-family:inherit}
+    .story-card__date{font-size:.76rem;color:#9ca3af;margin-top:12px}
+    .admin-panel{background:#fff;border-radius:24px;width:100%;max-width:580px;max-height:90vh;overflow-y:auto;box-shadow:0 16px 60px rgba(0,0,0,.2)}
+    .admin-panel__hd{display:flex;align-items:center;justify-content:space-between;padding:24px 28px 0}
+    .admin-panel__title{font-size:1.1rem;font-weight:900;color:#1a1a2e}
+    .admin-panel__close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b7280;padding:4px;line-height:1}
+    .admin-panel__body{padding:20px 28px 28px}
+    .aform{display:flex;flex-direction:column;gap:14px}
+    .aform label{font-size:.8rem;font-weight:700;color:#6b7280;display:block;margin-bottom:4px}
+    .aform input,.aform textarea,.aform select{width:100%;padding:10px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.9rem;font-family:inherit;outline:none;transition:border-color .2s;background:#fff;box-sizing:border-box}
+    .aform input:focus,.aform textarea:focus,.aform select:focus{border-color:#7c3aed}
+    .aform textarea{height:130px;resize:vertical;line-height:1.7}
+    .aform__row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .aform__submit{padding:12px;background:#7c3aed;color:#fff;border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit;transition:background .2s}
+    .aform__submit:hover{background:#6d28d9}
+    .aform__submit:disabled{background:#c4b5fd;cursor:not-allowed}
+    .adivider{border:none;border-top:1px solid #f3f0ff;margin:18px 0}
+    .alist{display:flex;flex-direction:column;gap:8px}
+    .aitem{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#f5f3ff;border-radius:8px;font-size:.85rem}
+    .aitem__date{color:#7c3aed;font-weight:700;white-space:nowrap;font-size:.78rem}
+    .aitem__title{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#1a1a2e}
+    .aitem__del{background:none;border:1px solid #fca5a5;color:#ef4444;border-radius:6px;padding:2px 8px;font-size:.75rem;cursor:pointer;white-space:nowrap;font-family:inherit}
+    .aitem__del:hover{background:#fee2e2}
+    .save-status{font-size:.82rem;text-align:center;padding:6px;border-radius:8px;display:none;margin-bottom:4px}
+    .save-status.success{display:block;background:#dcfce7;color:#166534}
+    .save-status.error{display:block;background:#fee2e2;color:#991b1b}
+    .save-status.loading{display:block;background:#ede9fe;color:#5b21b6}
+    .emoji-row{display:flex;flex-wrap:wrap;gap:6px;padding:8px;border:2px solid #e5e7eb;border-radius:10px}
+    .emoji-row:focus-within{border-color:#7c3aed}
+    .eopt{font-size:1.2rem;cursor:pointer;padding:4px;border-radius:6px;transition:background .15s;border:2px solid transparent}
+    .eopt:hover{background:#f5f3ff}
+    .eopt.sel{border-color:#7c3aed;background:#f5f3ff}
+    .modal-overlay{position:fixed;inset:0;background:rgba(26,26,46,.55);backdrop-filter:blur(4px);z-index:600;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+    .modal-overlay.open{opacity:1;pointer-events:auto}
+    .pw-modal{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:360px;text-align:center;box-shadow:0 16px 60px rgba(0,0,0,.2)}
+    .pw-modal__icon{font-size:2.5rem;margin-bottom:14px}
+    .pw-modal__title{font-size:1.1rem;font-weight:900;margin-bottom:6px;color:#1a1a2e}
+    .pw-modal__sub{font-size:.85rem;color:#6b7280;margin-bottom:20px}
+    .pw-modal__input{width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:1rem;font-family:inherit;outline:none;margin-bottom:10px;transition:border-color .2s;box-sizing:border-box}
+    .pw-modal__input:focus{border-color:#7c3aed}
+    .pw-modal__error{font-size:.8rem;color:#ef4444;margin-bottom:8px}
+    .pw-modal__btn{width:100%;padding:12px;background:#7c3aed;color:#fff;border:none;border-radius:10px;font-size:.9rem;font-weight:700;cursor:pointer;font-family:inherit}
+    .pw-modal__btn:hover{background:#6d28d9}
+    .admin-fab{position:fixed;bottom:32px;right:32px;width:52px;height:52px;border-radius:50%;background:#7c3aed;color:#fff;font-size:1.2rem;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(109,40,217,.4);z-index:500;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s}
+    .admin-fab:hover{background:#6d28d9;transform:scale(1.08)}
+    @media(max-width:600px){.pg-grid{grid-template-columns:1fr}.aform__row2{grid-template-columns:1fr}.admin-panel{border-radius:16px 16px 0 0}}
+  </style>
 </head>
 <body>
-
-  <!-- 헤더 -->
   <header class="header scrolled" id="header">
     <div class="container header__inner">
       <a href="index.html" class="header__logo">
@@ -28,45 +90,194 @@
         <a href="market.html">오이장터</a>
         <a href="index.html#pricing">입점</a>
       </nav>
-      <div class="header__actions">
-        <a href="index.html#pricing" class="btn btn--outline">점주 신청</a>
-      </div>
-      <button class="header__toggle" id="menuToggle" aria-label="메뉴 열기">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="header__actions"><a href="index.html#pricing" class="btn btn--outline">점주 신청</a></div>
+      <button class="header__toggle" id="menuToggle" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <!-- 페이지 히어로 -->
-  <section class="page-hero">
-    <div class="container page-hero__inner">
-      <p class="page-hero__eyebrow">My Bookshop Story</p>
-      <h1 class="page-hero__title">나의 책방이야기</h1>
-      <p class="page-hero__desc">강화포도책방 점주님들이 직접 쓰는<br />나만의 작은 책방 이야기.</p>
-    </div>
-  </section>
-
-  <!-- 준비 중 안내 -->
-  <section class="section">
+  <section class="pg-hero">
     <div class="container">
-      <div class="coming-soon">
-        <div class="coming-soon__icon">✍️</div>
-        <h2 class="coming-soon__title">이야기를 모으고 있어요</h2>
-        <p class="coming-soon__desc">점주님들의 따뜻한 책방 이야기를<br />곧 이 공간에서 만나보실 수 있어요.</p>
-        <a href="index.html" class="btn btn--primary">메인으로 돌아가기</a>
-      </div>
+      <p class="pg-hero__eye">My Bookshop Story</p>
+      <h1 class="pg-hero__title">✍️ 나의 책방이야기</h1>
+      <p class="pg-hero__sub">점주님들이 직접 쓰는 나만의 작은 책방 이야기</p>
     </div>
   </section>
 
-  <!-- 푸터 -->
-  <footer class="footer">
-    <div class="footer__bottom">
-      <div class="container">
-        <p>© 2026 강화포도책방. All rights reserved.</p>
-      </div>
+  <section class="pg-section">
+    <div class="container">
+      <div id="pgFeed" class="pg-grid"><div class="pg-empty"><div class="pg-empty__icon">✍️</div><p>이야기를 불러오는 중이에요…</p></div></div>
     </div>
+  </section>
+
+  <footer class="footer footer--deep">
+    <div class="footer__bottom"><div class="container"><p>© 2026 강화포도책방. All rights reserved.</p></div></div>
   </footer>
 
+  <!-- 관리자 패널 -->
+  <div class="modal-overlay" id="adminOverlay">
+    <div class="admin-panel">
+      <div class="admin-panel__hd">
+        <span class="admin-panel__title">✍️ 책방이야기 관리</span>
+        <button class="admin-panel__close" id="adminClose">✕</button>
+      </div>
+      <div class="admin-panel__body">
+        <form class="aform" id="writeForm">
+          <div>
+            <label>이모지 선택</label>
+            <div class="emoji-row" id="emojiRow">
+              <span class="eopt sel" data-e="✍️">✍️</span><span class="eopt" data-e="📖">📖</span><span class="eopt" data-e="🌸">🌸</span>
+              <span class="eopt" data-e="☕">☕</span><span class="eopt" data-e="🌿">🌿</span><span class="eopt" data-e="🍇">🍇</span>
+              <span class="eopt" data-e="🪴">🪴</span><span class="eopt" data-e="🌙">🌙</span><span class="eopt" data-e="💜">💜</span>
+            </div>
+          </div>
+          <div class="aform__row2">
+            <div><label>점주 이름 *</label><input type="text" id="fAuthor" placeholder="홍길동" required maxlength="20" /></div>
+            <div><label>책장 위치</label><input type="text" id="fShelf" placeholder="예) 3번 작은책장" /></div>
+          </div>
+          <div><label>이야기 제목 *</label><input type="text" id="fTitle" placeholder="나만의 책방 이야기 제목" required maxlength="50" /></div>
+          <div><label>이야기 내용 *</label><textarea id="fContent" placeholder="책방에서의 소소한 일상, 추천 책 이야기, 책방을 시작한 이유… 자유롭게 써주세요 :)" required></textarea></div>
+          <div><label>날짜</label><input type="date" id="fDate" /></div>
+          <div id="pgStatus" class="save-status"></div>
+          <button type="submit" class="aform__submit" id="submitBtn">이야기 등록하기 📤</button>
+        </form>
+        <hr class="adivider" />
+        <label style="font-size:.8rem;font-weight:700;color:#6b7280;display:block;margin-bottom:10px">등록된 이야기 관리</label>
+        <div class="alist" id="adminList"><p style="font-size:.82rem;color:#9ca3af;text-align:center;padding:10px">불러오는 중...</p></div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script>
+  (function(){
+    const PATH = 'data/stories.json';
+    let selEmoji = '✍️';
+
+    document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+
+    document.querySelectorAll('.eopt').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.eopt').forEach(e => e.classList.remove('sel'));
+        el.classList.add('sel');
+        selEmoji = el.dataset.e;
+      });
+    });
+
+    async function load() {
+      const data = await AC.fetchJSON(PATH);
+      const items = (data && data.stories) || [];
+      renderFeed(items);
+      return items;
+    }
+
+    function renderFeed(items) {
+      const feed = document.getElementById('pgFeed');
+      if (!items.length) {
+        feed.innerHTML = `<div class="pg-empty"><div class="pg-empty__icon">✍️</div><p>아직 등록된 이야기가 없어요.<br/>점주님들의 따뜻한 이야기를 기다려요!</p></div>`;
+        return;
+      }
+      const sorted = [...items].sort((a,b)=>b.date.localeCompare(a.date));
+      feed.innerHTML = sorted.map((s,i) => `
+        <article class="story-card">
+          <div class="story-card__badge">📚 ${AC.esc(s.shelf||'책방 점주')}</div>
+          <div class="story-card__header">
+            <div class="story-card__emoji">${AC.esc(s.emoji||'✍️')}</div>
+            <div>
+              <div class="story-card__title">${AC.esc(s.title)}</div>
+              <div class="story-card__meta">✍️ ${AC.esc(s.author)}</div>
+            </div>
+          </div>
+          <div class="story-card__body collapsed" id="stbody-${i}">${AC.esc(s.content)}</div>
+          <button class="story-card__toggle" onclick="togStory(${i})">더 읽기 ▾</button>
+          <div class="story-card__date">${s.date ? AC.fmtDate(s.date) : ''}</div>
+        </article>`).join('');
+    }
+
+    window.togStory = function(i){
+      const el = document.getElementById(`stbody-${i}`);
+      const btn = el.nextElementSibling;
+      el.classList.toggle('collapsed');
+      btn.textContent = el.classList.contains('collapsed') ? '더 읽기 ▾' : '접기 ▴';
+    };
+
+    function renderAdminList(items) {
+      const list = document.getElementById('adminList');
+      if (!items.length) { list.innerHTML = '<p style="font-size:.82rem;color:#9ca3af;text-align:center;padding:10px">등록된 이야기가 없어요</p>'; return; }
+      const sorted = [...items].sort((a,b)=>b.date.localeCompare(a.date));
+      list.innerHTML = sorted.map(s=>`
+        <div class="aitem">
+          <span class="aitem__date">${s.date}</span>
+          <span class="aitem__title">${AC.esc(s.emoji||'')} ${AC.esc(s.title)} — ${AC.esc(s.author)}</span>
+          <button class="aitem__del" onclick="delItem('${s.id}')">삭제</button>
+        </div>`).join('');
+    }
+
+    window.delItem = async function(id){
+      if(!confirm('삭제할까요?')) return;
+      AC.setStatus('pgStatus','loading','삭제 중…');
+      try {
+        const data = await AC.fetchJSON(PATH);
+        const items = (data.stories||[]).filter(s=>s.id!==id);
+        await AC.saveJSON(PATH,{stories:items},`이야기 삭제`);
+        AC.setStatus('pgStatus','success','삭제 완료!');
+        renderFeed(items); renderAdminList(items);
+      } catch(e){ handleErr(e,'pgStatus'); }
+    };
+
+    document.getElementById('writeForm').addEventListener('submit', async e=>{
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      AC.setStatus('pgStatus','loading','저장 중…');
+      const item = {
+        id: Date.now().toString(),
+        emoji: selEmoji,
+        author: document.getElementById('fAuthor').value.trim(),
+        shelf: document.getElementById('fShelf').value.trim(),
+        title: document.getElementById('fTitle').value.trim(),
+        content: document.getElementById('fContent').value.trim(),
+        date: document.getElementById('fDate').value,
+      };
+      try {
+        const data = await AC.fetchJSON(PATH);
+        const items = [...(data.stories||[]), item];
+        await AC.saveJSON(PATH,{stories:items},`이야기 추가: ${item.title}`);
+        AC.setStatus('pgStatus','success','✅ 등록 완료! 1~2분 후 반영됩니다.');
+        document.getElementById('writeForm').reset();
+        document.getElementById('fDate').value = new Date().toISOString().slice(0,10);
+        renderFeed(items); renderAdminList(items);
+      } catch(e){ handleErr(e,'pgStatus'); }
+      finally{ btn.disabled = false; }
+    });
+
+    function handleErr(e, sid) {
+      if(e.message==='NO_TOKEN'||e.message.includes('401')) {
+        AC.setStatus(sid,'error','GitHub 토큰을 입력해주세요');
+        AC.promptToken();
+      } else {
+        AC.setStatus(sid,'error','오류: '+e.message);
+      }
+    }
+
+    async function openAdmin(){
+      document.getElementById('adminOverlay').classList.add('open');
+      document.body.style.overflow='hidden';
+      const data = await AC.fetchJSON(PATH);
+      renderAdminList((data&&data.stories)||[]);
+    }
+
+    document.getElementById('adminClose').addEventListener('click',()=>{
+      document.getElementById('adminOverlay').classList.remove('open');
+      document.body.style.overflow='';
+    });
+    document.getElementById('adminOverlay').addEventListener('click',e=>{
+      if(e.target.id==='adminOverlay'){ document.getElementById('adminOverlay').classList.remove('open'); document.body.style.overflow=''; }
+    });
+
+    AC.injectModals({ onSuccess: openAdmin });
+    load();
+  })();
+  </script>
 </body>
 </html>
