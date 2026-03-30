@@ -348,25 +348,96 @@ ul {
    =================================== */
 .section--intro {
   background: #ffffff;
-  padding: 72px 0;
+  padding: 80px 0;
 }
 
 .intro__inner {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 56px;
 }
 
 .intro__image-wrap {
-  flex: 1;
-  max-width: 560px;
+  position: relative;
 }
 
 .intro__image {
   width: 100%;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
+}
+
+/* 소개 텍스트 영역 */
+.intro__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.intro__eyebrow {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .18em;
+  color: var(--grape);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.intro__headline {
+  font-size: clamp(1.35rem, 2.2vw, 1.75rem);
+  font-weight: 900;
+  color: #1a1a2e;
+  line-height: 1.55;
+  margin-bottom: 28px;
+}
+
+.intro__headline em {
+  font-style: normal;
+  color: var(--grape);
+}
+
+.intro__body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.intro__body p {
+  font-size: .93rem;
+  color: #4b5563;
+  line-height: 1.95;
+}
+
+.intro__body strong {
+  color: #5b21b6;
+  font-weight: 700;
+}
+
+.intro__body em {
+  font-style: normal;
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.intro__closing {
+  padding: 16px 20px;
+  border-left: 3px solid var(--grape);
+  background: #faf5ff;
+  border-radius: 0 10px 10px 0;
+  font-size: .88rem !important;
+  color: #4b5563 !important;
+  line-height: 1.85 !important;
+}
+
+.intro__tagline {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  line-height: 1.75;
+  padding-top: 20px;
+  border-top: 1px solid #ede9fe;
 }
 
 .intro__mascot-wrap {
@@ -383,16 +454,16 @@ ul {
   filter: drop-shadow(0 8px 20px rgba(107, 45, 139, 0.15));
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .intro__inner {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 36px;
   }
-
   .intro__image-wrap {
-    max-width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    width: 100%;
   }
-
   .intro__mascot {
     width: 140px;
   }
