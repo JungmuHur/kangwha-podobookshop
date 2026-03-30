@@ -1,1 +1,27 @@
-{"categories":["재능나눔","이웃살이","함께보기","신바람 동네책방"],"programs":[]}
+{
+  "categories": [
+    "재능나눔",
+    "이웃살이",
+    "함께보기",
+    "신바람 동네책방"
+  ],
+  "programs": [
+    {
+      "id": "1774847622128",
+      "category": "재능나눔",
+      "title": "민화",
+      "date": "2026-04-18",
+      "time": "14:00",
+      "place": "강화포도책방",
+      "description": "민화",
+      "fee": "5000",
+      "capacity": "7명",
+      "contact": "010 9080 9374",
+      "status": "open",
+      "images": [],
+      "posts": [],
+      "results": [],
+      "application": ""
+    }
+  ]
+}
