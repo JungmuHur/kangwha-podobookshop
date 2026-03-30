@@ -699,22 +699,10 @@
       el.textContent = msg;
     }
 
-    /* ── GitHub 토큰 입력 ── */
+    /* ── GitHub 토큰 입력 (커스텀 모달) ── */
     function promptToken() {
-      const token = prompt(
-        '📌 GitHub Personal Access Token을 입력해주세요.\n\n' +
-        '토큰 발급 방법:\n' +
-        '1. github.com/settings/tokens/new 접속\n' +
-        '2. Note: 책방일지\n' +
-        '3. Expiration: No expiration\n' +
-        '4. Scopes: repo 체크\n' +
-        '5. Generate token 클릭 후 복사'
-      );
-      if (token) {
-        ghToken = token.trim();
-        localStorage.setItem('_jt', ghToken);
-        sessionStorage.removeItem('_jt');
-      }
+      AC.promptToken();
+      // AC.promptToken이 저장하면 getGhToken()으로 이후에 읽힘
     }
 
     /* ── 비밀번호 확인 ── */

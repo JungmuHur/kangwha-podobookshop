@@ -206,13 +206,70 @@ window.AC = (function () {
     ).join('')}</div>`;
   }
 
-  /* ── 토큰 프롬프트 ── */
+  /* ── 토큰 모달 주입 (최초 1회) ── */
+  let _tokenModalReady = false;
+  function _ensureTokenModal() {
+    if (_tokenModalReady) return;
+    _tokenModalReady = true;
+    const css = `
+      #acTokenOverlay{position:fixed;inset:0;background:rgba(26,26,46,.6);backdrop-filter:blur(4px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s}
+      #acTokenOverlay.open{opacity:1;pointer-events:auto}
+      #acTokenBox{background:#fff;border-radius:20px;padding:36px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+      #acTokenBox h3{font-size:1rem;font-weight:900;color:#1a1a2e;margin:0 0 6px}
+      #acTokenBox p{font-size:.82rem;color:#6b7280;line-height:1.7;margin:0 0 16px}
+      #acTokenBox ol{font-size:.8rem;color:#4b5563;line-height:1.9;margin:0 0 16px;padding-left:18px}
+      #acTokenBox ol a{color:#7c3aed;text-decoration:none}
+      #acTokenInput{width:100%;padding:11px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:.88rem;font-family:inherit;outline:none;box-sizing:border-box;margin-bottom:8px;transition:border-color .2s}
+      #acTokenInput:focus{border-color:#7c3aed}
+      #acTokenNote{font-size:.75rem;color:#9ca3af;margin-bottom:14px}
+      .ac-token-btns{display:flex;gap:8px}
+      #acTokenSave{flex:1;padding:11px;background:#7c3aed;color:#fff;border:none;border-radius:10px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:inherit}
+      #acTokenSave:hover{background:#6d28d9}
+      #acTokenSkip{padding:11px 16px;background:#f3f4f6;color:#6b7280;border:none;border-radius:10px;font-size:.88rem;cursor:pointer;font-family:inherit}
+      #acTokenSkip:hover{background:#e5e7eb}
+    `;
+    const s = document.createElement('style'); s.textContent = css;
+    document.head.appendChild(s);
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="acTokenOverlay">
+        <div id="acTokenBox">
+          <h3>🔑 GitHub 연결 설정</h3>
+          <p>게시글 저장을 위해 GitHub Token이 필요합니다.<br/>한 번만 입력하면 이 브라우저에서는 다시 묻지 않아요.</p>
+          <ol>
+            <li><a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> 접속</li>
+            <li>Note 아무거나 입력 → Expiration: <b>No expiration</b></li>
+            <li>Scopes에서 <b>repo</b> 체크 → Generate token</li>
+            <li>생성된 토큰 복사 후 아래에 붙여넣기</li>
+          </ol>
+          <input type="password" id="acTokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" />
+          <p id="acTokenNote">입력 후 브라우저에 안전하게 저장됩니다 (localStorage)</p>
+          <div class="ac-token-btns">
+            <button id="acTokenSkip">나중에</button>
+            <button id="acTokenSave">저장하기</button>
+          </div>
+        </div>
+      </div>`);
+    document.getElementById('acTokenSave').addEventListener('click', () => {
+      const v = document.getElementById('acTokenInput').value.trim();
+      if (v) { setToken(v); document.getElementById('acTokenOverlay').classList.remove('open'); }
+    });
+    document.getElementById('acTokenInput').addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('acTokenSave').click();
+    });
+    document.getElementById('acTokenSkip').addEventListener('click', () => {
+      document.getElementById('acTokenOverlay').classList.remove('open');
+    });
+    document.getElementById('acTokenOverlay').addEventListener('click', e => {
+      if (e.target.id === 'acTokenOverlay') document.getElementById('acTokenOverlay').classList.remove('open');
+    });
+  }
+
+  /* ── 토큰 프롬프트 (커스텀 모달) ── */
   function promptToken() {
-    const t = prompt(
-      '🔑 GitHub Token 입력\n\n처음이라면:\n1. github.com/settings/tokens/new 접속\n2. repo 권한 체크 → Generate\n3. 복사 후 여기 붙여넣기'
-    );
-    if (t) setToken(t);
-    return t ? t.trim() : '';
+    _ensureTokenModal();
+    document.getElementById('acTokenInput').value = '';
+    document.getElementById('acTokenOverlay').classList.add('open');
+    setTimeout(() => document.getElementById('acTokenInput').focus(), 120);
   }
 
   /* ── 비밀번호 + FAB 모달 주입 ── */
