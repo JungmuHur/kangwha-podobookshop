@@ -729,72 +729,84 @@ ul {
   flex-shrink: 0;
 }
 
-/* 공식 인스타그램 강조 카드 */
-.official-sns {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* 공식 채널 2개 카드 */
+.official-channels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
-  color: #fff;
-  border-radius: 18px;
-  padding: 24px 28px;
+}
+.official-ch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 20px;
+  padding: 32px 24px;
   text-decoration: none;
+  color: #fff;
+  position: relative;
   transition: transform .2s, box-shadow .2s;
 }
-.official-sns:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(131,58,180,.35);
+.official-ch:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(0,0,0,.25);
 }
-.official-sns__left {
-  display: flex;
-  align-items: center;
-  gap: 18px;
+.official-ch--threads {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d1b4e 100%);
 }
-.official-sns__icon {
-  font-size: 2.4rem;
+.official-ch--daangn {
+  background: linear-gradient(135deg, #c03a00 0%, #ff6b1a 100%);
+}
+.official-ch__badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(255,255,255,.2);
+  border: 1.5px solid rgba(255,255,255,.45);
+  border-radius: 50px;
+  padding: 2px 10px;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+}
+.official-ch__icon {
+  font-size: 2.6rem;
+  margin-bottom: 12px;
   line-height: 1;
 }
-.official-sns__label {
-  font-size: .82rem;
+.official-ch__name {
+  font-size: .78rem;
   font-weight: 700;
-  opacity: .85;
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  opacity: .7;
+  margin-bottom: 6px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
-.official-badge {
-  background: rgba(255,255,255,.25);
-  border: 1px solid rgba(255,255,255,.5);
-  border-radius: 50px;
-  padding: 1px 8px;
-  font-size: .7rem;
-  font-weight: 900;
-  letter-spacing: .05em;
-}
-.official-sns__handle {
+.official-ch__handle {
   font-size: 1.15rem;
   font-weight: 900;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
-.official-sns__desc {
+.official-ch__desc {
   font-size: .8rem;
-  opacity: .8;
+  opacity: .75;
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
-.official-sns__cta {
-  font-size: .9rem;
-  font-weight: 700;
-  background: rgba(255,255,255,.2);
-  border: 1.5px solid rgba(255,255,255,.5);
+.official-ch__cta {
+  background: rgba(255,255,255,.18);
+  border: 1.5px solid rgba(255,255,255,.4);
   border-radius: 50px;
-  padding: 8px 18px;
-  white-space: nowrap;
-  flex-shrink: 0;
+  padding: 7px 20px;
+  font-size: .82rem;
+  font-weight: 700;
   transition: background .2s;
 }
-.official-sns:hover .official-sns__cta {
-  background: rgba(255,255,255,.35);
+.official-ch:hover .official-ch__cta {
+  background: rgba(255,255,255,.32);
+}
+@media (max-width: 480px) {
+  .official-channels { grid-template-columns: 1fr; }
 }
 
 /* ===================================
